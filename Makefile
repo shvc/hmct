@@ -36,7 +36,7 @@ default:
 ## pkg: build and package the app
 .PHONY: pkg
 pkg: image
-	@echo "Building Linux amd64 ${APP}-${VERSION} image package"
+	@echo "Saving ${APP}-${VERSION} image"
 	docker save ${APP}:${VERSION} | gzip > ${APP}-${VERSION}-img.tgz
 	
 ## clean: cleans the build results
@@ -48,7 +48,7 @@ clean:
 ## image: build docker image
 .PHONY: image
 image:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ${APP} -a ${LDFLAGS}
+	GOOS=linux GOARCH=amd64 go build -o ${APP} ${LDFLAGS} -a
 	docker build -t ${APP}:${VERSION} -f Dockerfile .
 
 ## help: prints this help message

@@ -39,14 +39,30 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
+            periodSeconds: 10
+            initialDelaySeconds: 10
           readinessProbe:
             httpGet:
-              path: /
+              path: /status
               port: http
+            periodSeconds: 10
+            initialDelaySeconds: 10
+          volumeMounts:
+            - name: config-vl
+              mountPath: /config
+          env:
+            - name: DEBUG
+              value: "TRUE"
+            - name: CONFIG
+              value: "/config/config.json"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: config-vl
+          configMap:
+            name: {{ .Chart.Name }}-config-configmap
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

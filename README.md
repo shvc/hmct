@@ -1,5 +1,5 @@
 # hmct
-helm chart sample
+helm chart sample  
 
 ## build and save Docker image
 ```
