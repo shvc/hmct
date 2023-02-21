@@ -9,6 +9,7 @@ WORKDIR /
 ENV DEBUG=0 \
     ADDR=:80 \
     MSG='default container message' \
-    CONFIG=/config.json
+    CONFIG=/config.json \
+    DATA_DIR=/tmp
 
 ENTRYPOINT ["/hmct"]

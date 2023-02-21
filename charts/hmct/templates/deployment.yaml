@@ -53,10 +53,12 @@ spec:
             - name: config-vl
               mountPath: /config
           env:
-            - name: DEBUG
-              value: "TRUE"
             - name: CONFIG
               value: "/config/config.json"
+            {{- range $k,$v := .Values.env }}
+            - name: {{ $k }}
+              value: {{quote $v }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:

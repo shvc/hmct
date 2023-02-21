@@ -1,5 +1,9 @@
 {
     "name":"mystic",
     "counter":1,
-    "date":"Wed Feb 15 21:52:29 EST 2023"
+    "date":"Wed Feb 15 21:52:29 EST 2023",
+    "data":{
+        "c":"d",
+        "e":2
+    }
 }
